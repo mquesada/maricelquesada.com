@@ -61,6 +61,9 @@ var processPolaroidSize = function() {
             var width = $(this).width();
             var height = $(this).height();
 
+            width = width - (width * 0.25);
+            height = height - (height * 0.25);
+
             var cssObj = {
                 'width': width + "px",
                 'height': height + "px"
