@@ -1,0 +1,152 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    width: 1010px;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-weight: bold;
+    margin: 5px;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: right;
+    padding: 20px;
+    color: white;
+    background-color: #D8D8D8;
+}
+
+h2 {
+    font-size: 24px;
+    color: #585858;
+}
+
+h3 {
+    font-size: 19px;
+    padding-bottom: 10px;
+    color: #083a68;
+    letter-spacing: -2px;
+}
+
+h4 {
+    font-size: 16px;
+    color: #444444;
+}
+
+.label {
+    font-style: italic;
+    color: grey;
+    margin-right: 5px;
+}
+
+.section {
+    margin: 15px;
+    border-bottom: 1px dashed #0b5394;
+}
+
+.section h2 {
+    margin-top: 10px;
+    display: inline;
+    width: 220px;
+    float: left;
+    text-align: right;
+}
+
+.section .content {
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 1px dashed #0b5394;
+    display: inline;
+    width: 730px;
+    float: right;
+    text-align: justify;
+}
+
+.content img {
+    vertical-align: middle;
+}
+
+.content .company {
+    padding-bottom: 10px;
+}
+
+.company .project {
+    padding: 10px 0 10px 10px;
+    border-top: 1px solid #D8D8D8;
+}
+
+.degree span {
+    float: left;
+}
+
+.degree .date {
+    padding-left: 10px;
+    width: 150px;
+}
+
+.degree .school {
+    width: 250px;
+}
+
+.clearb {
+    clear: both;
+}

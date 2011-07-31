@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script src="js/galleria/galleria-1.2.4.min.js"></script>
+    </head>
+    <body>
+        <div id="gallery">
+            <img src="http://farm6.static.flickr.com/5164/5322782636_038a7a320a_z_d.jpg">
+            <img src="http://farm6.static.flickr.com/5211/5426788483_c646224aba_z_d.jpg">
+            <img src="http://farm3.static.flickr.com/2204/5694797543_d73d0f6052_z_d.jpg">
+        </div>
+        <script>
+            Galleria.loadTheme('js/galleria/themes/classic/galleria.classic.min.js');
+            $("#gallery").galleria({
+                width: 1000,
+                height: 650,
+                transition: 'fade'
+            });
+        </script>
+    </body>
+</html>
