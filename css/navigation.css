@@ -93,6 +93,7 @@ ul.sdt_menu li div.sdt_box{
 	left:0px;
 	display:none;
 	background:#000;
+    z-index: 14;
 }
 ul.sdt_menu li div.sdt_box a{
 	float:left;
