@@ -1,3 +1,5 @@
+var currentZIndex = 1;
+
 var initNavigation = function() {
     /**
      * for each menu element, on mouseenter,
@@ -90,8 +92,6 @@ $(document).ready(function() {
     
     processPolaroidSize();
 
-    var currentZIndex;
-
     $(".polaroid").each(function () {
         var tempVal = Math.round(Math.random());
         if (tempVal == 1) {
@@ -120,7 +120,7 @@ $(document).ready(function() {
     $(".polaroid").mouseover(function(e) {
         // Bring polaroid to the foreground
         currentZIndex = $(this).css("z-index");
-        var cssObj = { 'z-index' : currentZIndex + 1,
+        var cssObj = { 'z-index' : 100,
             'transform' : 'rotate(0deg)',     // added in case CSS3 is standard
             '-moz-transform' : 'rotate(0deg)',  // firefox only
             '-webkit-transform' : 'rotate(0deg)' };  // safari only
