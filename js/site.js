@@ -1,4 +1,13 @@
-var currentZIndex = 1;
+var currentZIndex;
+var draggingZIndex = 1;
+var dragging = false;
+
+/* Function to get random number upto m
+ http://roshanbh.com.np/2008/09/get-random-number-range-two-numbers-javascript.html */
+var randomXToY = function(minVal, maxVal, floatVal) {
+    var randVal = minVal + (Math.random() * (maxVal - minVal));
+    return typeof floatVal == 'undefined' ? Math.round(randVal) : randVal.toFixed(floatVal);
+};
 
 var initNavigation = function() {
     /**
@@ -79,17 +88,7 @@ var processPolaroidSize = function() {
     });
 };
 
-// Function to get random number upto m
-// http://roshanbh.com.np/2008/09/get-random-number-range-two-numbers-javascript.html
-var randomXToY = function(minVal, maxVal, floatVal) {
-    var randVal = minVal + (Math.random() * (maxVal - minVal));
-    return typeof floatVal == 'undefined' ? Math.round(randVal) : randVal.toFixed(floatVal);
-};
-
-$(document).ready(function() {
-    // Executed once all the page elements are loaded
-    initNavigation();
-    
+var initPolaroidPictures = function() {
     processPolaroidSize();
 
     $(".polaroid").each(function () {
@@ -118,26 +117,87 @@ $(document).ready(function() {
     });
 
     $(".polaroid").mouseover(function(e) {
-        // Bring polaroid to the foreground
-        currentZIndex = $(this).css("z-index");
-        var cssObj = { 'z-index' : 100,
-            'transform' : 'rotate(0deg)',     // added in case CSS3 is standard
-            '-moz-transform' : 'rotate(0deg)',  // firefox only
-            '-webkit-transform' : 'rotate(0deg)' };  // safari only
-        $(this).css(cssObj);
+        if (!dragging) {
+            // Bring polaroid to the foreground
+            currentZIndex = $(this).css("z-index");
+            var cssObj = {
+                'z-index' : draggingZIndex + 1,
+                'transform' : 'rotate(0deg)',     // added in case CSS3 is standard
+                '-moz-transform' : 'rotate(0deg)',  // firefox only
+                '-webkit-transform' : 'rotate(0deg)', // safari only
+                'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
+                '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
+                '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
+                'padding-left' : '-5px',
+                'padding-top' : '-5px'
+            };
+            $(this).css(cssObj);
+        }
     });
 
     $(".polaroid").mouseout(function(e) {
-        // Bring polaroid to the foreground
-        var rotationDegrees = $(this).attr("rotationDegrees");
-        var cssObj = {
-            'z-index': currentZIndex,
-            'transform' : 'rotate(' + rotationDegrees + 'deg)',     // added in case CSS3 is standard
-            '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)',  // firefox only
-            '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)' // safari only
-        };
-        $(this).css(cssObj);
+        if (!dragging) {
+            // Bring polaroid to the foreground
+            var rotationDegrees = $(this).attr("rotationDegrees");
+            var cssObj = {
+                'box-shadow' : '', // added in case CSS3 is standard
+                '-webkit-box-shadow' : '', // safari only
+                '-moz-box-shadow' : '', // firefox only
+                'z-index': currentZIndex,
+                'transform' : 'rotate(' + rotationDegrees + 'deg)',     // added in case CSS3 is standard
+                '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)',  // firefox only
+                '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)' // safari only
+            };
+            $(this).css(cssObj);
+        }
     });
 
+
+    // Make the polaroid draggable & display a shadow when dragging
+    $(".polaroid").draggable({
+        containment: 'parent',
+        cursor: 'crosshair',
+        start: function(event, ui) {
+            dragging = true;
+            draggingZIndex++;
+            currentZIndex = draggingZIndex;
+            var cssObj = {
+                'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
+                '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
+                '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
+                'padding-left' : '-5px',
+                'padding-top' : '-5px',
+                'z-index' : draggingZIndex
+            };
+            $(this).css(cssObj);
+        },
+        stop: function(event, ui) {
+            var tempVal = Math.round(Math.random());
+            if (tempVal == 1) {
+                var rotationDegrees = randomXToY(330, 360); // rotate left
+            } else {
+                var rotationDegrees = randomXToY(0, 30); // rotate right
+            }
+            $(this).attr("rotationDegrees", rotationDegrees);
+            var cssObj = {
+                'box-shadow' : '', // added in case CSS3 is standard
+                '-webkit-box-shadow' : '', // safari only
+                '-moz-box-shadow' : '', // firefox only
+                'transform' : 'rotate(' + rotationDegrees + 'deg)', // added in case CSS3 is standard
+                '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)', // safari only
+                '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)', // firefox only
+                'margin-left' : '0px',
+                'margin-top' : '0px',
+                'z-index': draggingZIndex
+            };
+            $(this).css(cssObj);
+            dragging = false;
+        }
+    });
+}
+$(document).ready(function() {
+    initNavigation();
+
+    initPolaroidPictures();
 });
 
