@@ -63,7 +63,78 @@ footer {
     text-align: center;
 }
 
+footer #copyright {
+    width: 100%;
+}
+
+footer #shuffle a {
+    margin: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    color:#0B75AF;
+}
+
 .clear {
     clear: both;
 }
 
+#main-about {
+    width: 100%;
+    height: 425px;
+    display: block;
+}
+
+#about {
+    width: 50%;
+    height: 400px;
+    margin: 25px auto 0px auto;
+}
+
+#about #picture {
+    width: 175px;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+#about #picture img {
+    /* CSS3 Box Shadow */
+    -moz-box-shadow: 2px 2px 10px #E8E8E8;
+    -webkit-box-shadow: 2px 2px 10px #E8E8E8;
+    box-shadow: 2px 2px 10px #E8E8E8;
+}
+
+#about #info {
+    width: 70%;
+    height: 100%;
+    position: relative;
+    float: right;
+}
+
+#about #info p {
+    font-family: 'Unna', serif;
+    color: #EDEDED;
+    font-size: 18px;
+    overflow: visible;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#about #info #name {
+    margin: 0;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 30px;
+    color:#0B75AF;
+    text-shadow:1px 1px 1px #000;
+}
+
+#about #info a {
+    text-decoration: none;
+    cursor: auto;
+    color: #0B75AF;
+}
+
+#about #info a:hover {
+    text-decoration: underline;
+    color: #EDEDED;
+}

@@ -15,6 +15,10 @@
     <script type="text/javascript" src="js/site.js"></script>
     <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 
+    <script type="text/javascript">var switchTo5x = false;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher:'b8af712d-fde1-45f8-948b-6e5b740cc0d5'});</script>
+
 </head>
 <body>
 <header>
@@ -65,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="resume/index.html" target="_blank">
+                <a href="about.html">
                     <img src="images/me.png" alt=""/>
                     <span class="sdt_active"></span>
 						<span class="sdt_wrap">
@@ -87,7 +91,8 @@
         </div>
         <div class="polaroid">
             <a href="http://www.flickr.com/photos/mquesada/5948572235/" target="_blank">
-                <img src="http://farm6.static.flickr.com/5135/5491477554_e5d7be25c8_m_d.jpg" alt="Costa Rica - Sunsets"/>
+                <img src="http://farm6.static.flickr.com/5135/5491477554_e5d7be25c8_m_d.jpg"
+                     alt="Costa Rica - Sunsets"/>
             </a>
         </div>
         <div class="polaroid">
@@ -142,12 +147,14 @@
         </div>
         <div class="polaroid">
             <a href="http://www.flickr.com/photos/mquesada/2477914394/" target="_blank">
-                <img src="http://farm4.static.flickr.com/3275/2477914394_e6bb14fd08_m_d.jpg" alt="Costa Rica - Esterillos"/>
+                <img src="http://farm4.static.flickr.com/3275/2477914394_e6bb14fd08_m_d.jpg"
+                     alt="Costa Rica - Esterillos"/>
             </a>
         </div>
         <div class="polaroid">
             <a href="http://www.flickr.com/photos/mquesada/5427154061/" target="_blank">
-                <img src="http://farm6.static.flickr.com/5020/5427154061_69f800e2a1_m_d.jpg" alt="Costa Rica - Esterillos"/>
+                <img src="http://farm6.static.flickr.com/5020/5427154061_69f800e2a1_m_d.jpg"
+                     alt="Costa Rica - Esterillos"/>
             </a>
         </div>
         <div class="polaroid">
@@ -155,12 +162,37 @@
                 <img src="http://farm4.static.flickr.com/3185/3038940502_0590e0dd37_m_d.jpg" alt="Sam"/>
             </a>
         </div>
-    </section>
+    </div>
 </section>
 <div class="clear">&nbsp;</div>
 <footer>
-    <p>Copyright &copy; 2011 - Maricel Quesada</p>
-    <p>All pictures used in this site are property of Maricel Quesada</p>
+    <div id="copyright">
+        <!--<div id="shuffle">-->
+            <!--<a href="javascript: shuffle();">Shuffle</a>-->
+        <!--</div>-->
+        <p>Copyright &copy; 2011 - Maricel Quesada</p>
+
+        <p>All pictures used in this site are property of Maricel Quesada</p>
+
+        <p>
+            <span class='st_digg'></span>
+            <span class='st_delicious'></span>
+            <span class='st_blogger'></span>
+            <span class='st_twitter'></span>
+            <span class='st_facebook'></span>
+            <span class='st_yahoo'></span>
+            <span class='st_gbuzz'></span>
+            <span class='st_email'></span>
+            <span class='st_sharethis'></span>
+        </p>
+    </div>
 </footer>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        initNavigation();
+
+        initPictures();
+    });
+</script>
 </body>
 </html>

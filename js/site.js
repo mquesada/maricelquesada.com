@@ -2,16 +2,22 @@ var currentZIndex;
 var draggingZIndex = 1;
 var dragging = false;
 
-/* Function to get random number upto m
- http://roshanbh.com.np/2008/09/get-random-number-range-two-numbers-javascript.html */
+/**
+ * Function to get random number upto m
+ * http://roshanbh.com.np/2008/09/get-random-number-range-two-numbers-javascript.html
+*/
 var randomXToY = function(minVal, maxVal, floatVal) {
     var randVal = minVal + (Math.random() * (maxVal - minVal));
     return typeof floatVal == 'undefined' ? Math.round(randVal) : randVal.toFixed(floatVal);
 };
 
+/**
+ * Inits the navigation (animation, text, etc.)
+ * http://www.htmldrive.net/items/show/199/jQuery-and-CSS3-Awesome-Slide-Down-Box-Menu
+ */
 var initNavigation = function() {
     /**
-     * for each menu element, on mouseenter,
+     * For each menu element, on mouseenter,
      * we enlarge the image, and show both sdt_active span and
      * sdt_wrap span. If the element has a sub menu (sdt_box),
      * then we slide it - if the element is the last one in the menu
@@ -20,6 +26,7 @@ var initNavigation = function() {
      */
     $('#sdt_menu > li').bind('mouseenter',
         function() {
+            $( 'html, body' ).animate( { scrollTop: 0 }, 0 );
             var $elem = $(this);
             $elem.find('img')
                 .stop(true)
@@ -43,6 +50,7 @@ var initNavigation = function() {
                             left = '-170px';
                         $sub_menu.show().animate({'left':left}, 200);
                     }
+
                 });
         }).bind('mouseleave', function() {
             var $elem = $(this);
@@ -66,7 +74,12 @@ var initNavigation = function() {
         });
 };
 
-var processPolaroidSize = function() {
+/**
+ * I am using my Flickr Images for this, however the size that is better is the small,
+ * but it is still a big too big, so I resize it by reducing the image and the div
+ * by 25%.
+ */
+var processImageSize = function() {
     $("img", $("#gallery")).each(function() {
         $(this).load(function() {
             var width = $(this).width();
@@ -88,34 +101,44 @@ var processPolaroidSize = function() {
     });
 };
 
-var initPolaroidPictures = function() {
-    processPolaroidSize();
-
+/**
+ * It rotates and randomly position each image in the gallery container.
+ */
+var rotatePictures = function() {
     $(".polaroid").each(function () {
-        var tempVal = Math.round(Math.random());
-        if (tempVal == 1) {
+        if (Math.round(Math.random()) == 1) {
             var rotationDegrees = randomXToY(330, 360); // rotate left
         } else {
             var rotationDegrees = randomXToY(0, 30); // rotate right
         }
-
+        $(this).attr("rotationDegrees", rotationDegrees);
+        
         var position = $(this).parent().offset();
         var wiw = $(this).parent().width();
         var wih = $(this).parent().height();
 
-        var leftPosition = Math.random() * (wiw - $(this).width()) + position.left;
-        var topPosition = Math.random() * (wih - position.top);
+        var leftPosition = Math.round(Math.random() * (wiw - $(this).width()) + position.left);
+        var topPosition = Math.round(Math.random() * (wih - position.top));
 
         var cssObj = {
-            'left' : leftPosition,
-            'top' : topPosition,
+            'left' : leftPosition + 'px',
+            'top' : topPosition + 'px',
             '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)',  // safari only
             '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)',  // firefox only
-            'tranform' : 'rotate(' + rotationDegrees + 'deg)' }; // added in case CSS3 is standard
+            'tranform' : 'rotate(' + rotationDegrees + 'deg)' // added in case CSS3 is standard
+        };
         $(this).css(cssObj);
-        $(this).attr("rotationDegrees", rotationDegrees);
     });
+};
 
+/**
+ * Inits each poloroid image, rotating, positioning them and setting different events
+ * like mouseover, mouseout and dragging.
+ */
+var initPictures = function() {
+    processImageSize();
+    rotatePictures();
+    
     $(".polaroid").mouseover(function(e) {
         if (!dragging) {
             // Bring polaroid to the foreground
@@ -157,6 +180,7 @@ var initPolaroidPictures = function() {
     $(".polaroid").draggable({
         containment: 'parent',
         cursor: 'crosshair',
+
         start: function(event, ui) {
             dragging = true;
             draggingZIndex++;
@@ -171,6 +195,7 @@ var initPolaroidPictures = function() {
             };
             $(this).css(cssObj);
         },
+        
         stop: function(event, ui) {
             var tempVal = Math.round(Math.random());
             if (tempVal == 1) {
@@ -194,10 +219,15 @@ var initPolaroidPictures = function() {
             dragging = false;
         }
     });
-}
-$(document).ready(function() {
-    initNavigation();
+};
 
-    initPolaroidPictures();
-});
+/**
+ * Method to shuffle the images again.
+ */
+var shuffle = function() {
+    if (!dragging) {
+        rotatePictures();
+        draggingZIndex = 1;
+    }
+};
 
