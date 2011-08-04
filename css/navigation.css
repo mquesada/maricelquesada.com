@@ -80,7 +80,7 @@ ul.sdt_menu li span span.sdt_descr{
 	float:left;
 	clear:both;
 	width:155px; /*For dumbass IE7*/
-	font-size:10px;
+	font-size:11px;
 	letter-spacing:1px;
 }
 ul.sdt_menu li div.sdt_box{
