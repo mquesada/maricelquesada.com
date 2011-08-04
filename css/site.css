@@ -99,9 +99,9 @@ footer #shuffle a {
 
 #about #picture img {
     /* CSS3 Box Shadow */
-    -moz-box-shadow: 2px 2px 10px #E8E8E8;
-    -webkit-box-shadow: 2px 2px 10px #E8E8E8;
-    box-shadow: 2px 2px 10px #E8E8E8;
+    -moz-box-shadow: 5px 5px 10px #E8E8E8;
+    -webkit-box-shadow: 5px 5px 10px #E8E8E8;
+    box-shadow: 5px 5px 10px #E8E8E8;
 }
 
 #about #info {
