@@ -5,7 +5,7 @@ var dragging = false;
 /**
  * Function to get random number upto m
  * http://roshanbh.com.np/2008/09/get-random-number-range-two-numbers-javascript.html
-*/
+ */
 var randomXToY = function(minVal, maxVal, floatVal) {
     var randVal = minVal + (Math.random() * (maxVal - minVal));
     return typeof floatVal == 'undefined' ? Math.round(randVal) : randVal.toFixed(floatVal);
@@ -26,7 +26,7 @@ var initNavigation = function() {
      */
     $('#sdt_menu > li').bind('mouseenter',
         function() {
-            $( 'html, body' ).animate( { scrollTop: 0 }, 0 );
+            $('html, body').animate({ scrollTop: 0 }, 0);
             var $elem = $(this);
             $elem.find('img')
                 .stop(true)
@@ -112,7 +112,7 @@ var rotatePictures = function() {
             var rotationDegrees = randomXToY(0, 30); // rotate right
         }
         $(this).attr("rotationDegrees", rotationDegrees);
-        
+
         var position = $(this).parent().offset();
         var wiw = $(this).parent().width();
         var wih = $(this).parent().height();
@@ -138,7 +138,7 @@ var rotatePictures = function() {
 var initPictures = function() {
     processImageSize();
     rotatePictures();
-    
+
     $(".polaroid").mouseover(function(e) {
         if (!dragging) {
             // Bring polaroid to the foreground
@@ -195,7 +195,7 @@ var initPictures = function() {
             };
             $(this).css(cssObj);
         },
-        
+
         stop: function(event, ui) {
             var tempVal = Math.round(Math.random());
             if (tempVal == 1) {
@@ -229,5 +229,43 @@ var shuffle = function() {
         rotatePictures();
         draggingZIndex = 1;
     }
+};
+
+var initMainGalleria = function() {
+    var galleries = $('.ad-gallery').adGallery({
+        loader_image: 'images/loader.gif',
+        width: 1000, // Width of the image, set to false and it will read the CSS width
+        height: 550, // Height of the image, set to false and it will read the CSS height
+        thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
+        // Note that this effect combined with other effects might be resource intensive
+        // and make animations lag
+        start_at_index: 0, // Which image should be displayed at first? 0 is the first image
+        // to be placed somewhere else than on top of the image
+        animate_first_image: false, // Should first image just be displayed, or animated in?
+        animation_speed: 400, // Which ever effect is used to switch images, how long should it take?
+        display_next_and_prev: true, // Can you navigate by clicking on the left/right on the image?
+        display_back_and_forward: true, // Are you allowed to scroll the thumb list?
+        scroll_jump: 0, // If 0, it jumps the width of the container
+        slideshow: {
+            enable: true,
+            autostart: false,
+            speed: 3000,
+            start_label: 'Start',
+            stop_label: 'Stop',
+            stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
+            countdown_prefix: '(', // Wrap around the countdown
+            countdown_sufix: ')',
+            onStart: function() {
+                // Do something wild when the slideshow starts
+            },
+            onStop: function() {
+                // Do something wild when the slideshow stops
+            }
+        },
+        effect: 'fade', // or 'slide-vert', 'resize', 'fade', 'none' or false
+        enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
+        cycle: true // If set to false, you can't go from the last image to the first, and vice versa
+    });
+
 };
 

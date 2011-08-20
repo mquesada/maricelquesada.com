@@ -1,22 +1,227 @@
-<!doctype html>
-<html>
-    <head>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-        <script src="js/galleria/galleria-1.2.4.min.js"></script>
-    </head>
-    <body>
-        <div id="gallery">
-            <img src="http://farm6.static.flickr.com/5164/5322782636_038a7a320a_z_d.jpg">
-            <img src="http://farm6.static.flickr.com/5211/5426788483_c646224aba_z_d.jpg">
-            <img src="http://farm3.static.flickr.com/2204/5694797543_d73d0f6052_z_d.jpg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Maricel Quesada's Website</title>
+
+    <link rel="stylesheet" type="text/css" href="css/site.css"/>
+    <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.ad-gallery.css"/>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+
+    <script type="text/javascript">var switchTo5x = false;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher:'b8af712d-fde1-45f8-948b-6e5b740cc0d5'});</script>
+    <script src="js/jquery.ad-gallery.js"></script>
+</head>
+<body>
+<header>
+    <nav id="topNav">
+        <ul id="sdt_menu" class="sdt_menu">
+            <li>
+                <a href="index.html">
+                    <img src="images/home.png" alt=""/>
+                    <span class="sdt_active"></span>
+						<span class="sdt_wrap">
+							<span class="sdt_link">Home</span>
+							<span class="sdt_descr">Maricel Quesada.com</span>
+						</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/talks.png" alt=""/>
+                    <span class="sdt_active"></span>
+						<span class="sdt_wrap">
+							<span class="sdt_link">Talks</span>
+							<span class="sdt_descr">Technical talks</span>
+						</span>
+                </a>
+
+                <div class="sdt_box">
+                    <a href="presentations/groovy/lets-get-groovy.html" target="_blank">Let's Get Groovy</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/blog.png" alt=""/>
+                    <span class="sdt_active"></span>
+						<span class="sdt_wrap">
+							<span class="sdt_link">Blog</span>
+							<span class="sdt_descr">Where my ideas are written</span>
+						</span>
+                </a>
+
+                <div class="sdt_box">
+                    <a href="http://maricel-tech.blogspot.com" target="_blank">Professional Blog</a>
+                    <a href="http://maricelquesada.blogspot.com" target="_blank">Personal Blog</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="images/gallery.png" alt=""/>
+                    <span class="sdt_active"></span>
+						<span class="sdt_wrap">
+							<span class="sdt_link">Gallery</span>
+							<span class="sdt_descr">Check my passion</span>
+						</span>
+                </a>
+                <div class="sdt_box">
+                    <a href="gallery.html">My Gallery</a>
+                    <a href="http://www.flickr.com/photos/mquesada/" target="_blank">My Flickr Photos</a>
+                </div>
+            </li>
+            <li>
+                <a href="about.html">
+                    <img src="images/me.png" alt=""/>
+                    <span class="sdt_active"></span>
+						<span class="sdt_wrap">
+							<span class="sdt_link">About me</span>
+							<span class="sdt_descr">Get to know what I do</span>
+						</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="clear">&nbsp;</div>
+<section id="main-gallery">
+    <div id="galleria" class="ad-gallery">
+        <div class="ad-image-wrapper">
         </div>
-        <script>
-            Galleria.loadTheme('js/galleria/themes/classic/galleria.classic.min.js');
-            $("#gallery").galleria({
-                width: 1000,
-                height: 650,
-                transition: 'fade'
-            });
-        </script>
-    </body>
+        <div class="ad-controls">
+        </div>
+        <div class="ad-nav">
+            <div class="ad-thumbs">
+                <ul class="ad-thumb-list">
+                    <li>
+                        <a href="http://farm4.static.flickr.com/3215/3110958343_11b7910eeb_z_d.jpg">
+                            <img src="http://farm4.static.flickr.com/3215/3110958343_11b7910eeb_t_d.jpg" title="Birds"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5135/5491477554_e5d7be25c8_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5135/5491477554_e5d7be25c8_t_d.jpg"
+                                 title="Costa Rica - Sunsets"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm7.static.flickr.com/6011/5949042076_eaeb0e7a21_z_d.jpg">
+                            <img src="http://farm7.static.flickr.com/6011/5949042076_eaeb0e7a21_t_d.jpg"
+                                 title="USA - SLC"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm3.static.flickr.com/2204/5694797543_d73d0f6052_z_d.jpg">
+                            <img src="http://farm3.static.flickr.com/2204/5694797543_d73d0f6052_t_d.jpg" title="Flowers"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5140/5490746531_814430efde_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5140/5490746531_814430efde_t_d.jpg" title="Animals"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5254/5423553290_8facf00ce8_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5254/5423553290_8facf00ce8_t_d.jpg"
+                                 title="Architecture" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5214/5383250883_7fe8616e3b_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5214/5383250883_7fe8616e3b_t_d.jpg"
+                                 title="Spain - Madrid" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm4.static.flickr.com/3114/3187567151_f9276d05a8_z_d.jpg">
+                            <img src="http://farm4.static.flickr.com/3114/3187567151_f9276d05a8_t_d.jpg"
+                                 title="Italy - Venice" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5220/5390305801_232b75d1ed_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5220/5390305801_232b75d1ed_t_d.jpg"
+                                 title="France - Paris" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5058/5392739852_d5a2845884_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5058/5392739852_d5a2845884_t_d.jpg"
+                                 title="Italy - Florence" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5011/5393182040_637514340d_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5011/5393182040_637514340d_t_d.jpg"
+                                 title="Italy - Pisa" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5127/5374830155_1b66daa221_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5127/5374830155_1b66daa221_t_d.jpg"
+                                 title="Spain - Valencia" alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm6.static.flickr.com/5020/5427154061_69f800e2a1_z_d.jpg">
+                            <img src="http://farm6.static.flickr.com/5020/5427154061_69f800e2a1_t_d.jpg"
+                                 title="Costa Rica - La Paz Waterfalls"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm4.static.flickr.com/3185/3038940502_0590e0dd37_z_d.jpg">
+                            <img src="http://farm4.static.flickr.com/3185/3038940502_0590e0dd37_t_d.jpg" title="Sam"
+                                 alt=""/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://farm4.static.flickr.com/3275/2477914394_e6bb14fd08_z_d.jpg">
+                            <img src="http://farm4.static.flickr.com/3275/2477914394_e6bb14fd08_t_d.jpg"
+                                 title="Costa Rica - Esterillos"
+                                 alt=""/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clear">&nbsp;</div>
+<footer>
+    <div id="copyright">
+        <p>Copyright &copy; 2011 - Maricel Quesada</p>
+
+        <p>All pictures used in this site are property of Maricel Quesada</p>
+
+        <p>
+            <span class='st_digg'></span>
+            <span class='st_delicious'></span>
+            <span class='st_blogger'></span>
+            <span class='st_twitter'></span>
+            <span class='st_facebook'></span>
+            <span class='st_yahoo'></span>
+            <span class='st_gbuzz'></span>
+            <span class='st_email'></span>
+            <span class='st_sharethis'></span>
+        </p>
+    </div>
+</footer>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        initNavigation();
+
+        initMainGalleria();
+    });
+</script>
+</body>
 </html>
