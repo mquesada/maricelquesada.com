@@ -262,7 +262,7 @@ var initMainGalleria = function() {
                 // Do something wild when the slideshow stops
             }
         },
-        effect: 'fade', // or 'slide-vert', 'resize', 'fade', 'none' or false
+        effect: 'resize', // or 'slide-vert', 'resize', 'fade', 'none' or false
         enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
         cycle: true // If set to false, you can't go from the last image to the first, and vice versa
     });

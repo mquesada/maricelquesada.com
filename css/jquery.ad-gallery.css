@@ -78,6 +78,7 @@
     top: 0;
     left: 0;
     z-index: 9;
+    border: 2px solid #000;
 }
 
 .ad-gallery .ad-image-wrapper .ad-image a img {
