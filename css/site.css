@@ -134,10 +134,16 @@ footer #shuffle a {
 
 #main-gallery {
     width: 100%;
-    height: 700px;
+    height: 750px;
     display: block;
 }
 
-#galleria {
-    margin-top: 25px;
+#main-gallery #set-name {
+    width: 500px;
+    text-align: center;
+    display: block;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 30px;
+    color:#0B75AF;
+    margin: 5px auto;
 }

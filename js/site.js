@@ -231,40 +231,66 @@ var shuffle = function() {
     }
 };
 
+var getURLParameter = function(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+};
+
+var apiKey = "cb6ebb8677771edd1fc882540576c44c";
 var initMainGalleria = function() {
-    var galleries = $('.ad-gallery').adGallery({
-        loader_image: 'images/loader.gif',
-        width: 1000, // Width of the image, set to false and it will read the CSS width
-        height: 550, // Height of the image, set to false and it will read the CSS height
-        thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
-        // Note that this effect combined with other effects might be resource intensive
-        // and make animations lag
-        start_at_index: 0, // Which image should be displayed at first? 0 is the first image
-        // to be placed somewhere else than on top of the image
-        animate_first_image: false, // Should first image just be displayed, or animated in?
-        animation_speed: 400, // Which ever effect is used to switch images, how long should it take?
-        display_next_and_prev: true, // Can you navigate by clicking on the left/right on the image?
-        display_back_and_forward: true, // Are you allowed to scroll the thumb list?
-        scroll_jump: 0, // If 0, it jumps the width of the container
-        slideshow: {
-            enable: true,
-            autostart: false,
-            speed: 3000,
-            start_label: 'Start',
-            stop_label: 'Stop',
-            stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
-            countdown_prefix: '(', // Wrap around the countdown
-            countdown_sufix: ')',
-            onStart: function() {
-                // Do something wild when the slideshow starts
+    var setName = getURLParameter("n");
+    $("#set-name").html(setName);
+    
+    var setId = getURLParameter("id");
+
+    var flickrApiUrl = "http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + setId + "&api_key=" + apiKey + "&jsoncallback=?";
+
+    $.getJSON(flickrApiUrl, function(data) {
+        $.each(data.photoset.photo, function(i, photo) {
+            var imgThumb = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t_d.jpg";
+            var imgLink = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z_d.jpg";
+            var li = $("<li/>");
+            var aHref = $("<a href='" + imgLink + "'></a>");
+            var img = $("<img/>").attr("src", imgThumb).attr("title", photo.title);
+            img.appendTo(aHref);
+            aHref.appendTo(li);
+            var list = $(".ad-thumb-list");
+
+            li.appendTo(list);
+        });
+
+        // Init the gallery
+        var galleries = $('.ad-gallery').adGallery({
+            loader_image: 'images/loader.gif',
+            width: 1000, // Width of the image, set to false and it will read the CSS width
+            height: 550, // Height of the image, set to false and it will read the CSS height
+            thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
+            // Note that this effect combined with other effects might be resource intensive
+            // and make animations lag
+            start_at_index: 0, // Which image should be displayed at first? 0 is the first image
+            // to be placed somewhere else than on top of the image
+            slideshow: {
+                enable: true,
+                autostart: false,
+                speed: 3000,
+                start_label: 'Start',
+                stop_label: 'Stop',
+                stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
+                countdown_prefix: '(', // Wrap around the countdown
+                countdown_sufix: ')',
+                onStart: function() {
+                    // Do something wild when the slideshow starts
+                },
+                onStop: function() {
+                    // Do something wild when the slideshow stops
+                }
             },
-            onStop: function() {
-                // Do something wild when the slideshow stops
-            }
-        },
-        effect: 'resize', // or 'slide-vert', 'resize', 'fade', 'none' or false
-        enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
-        cycle: true // If set to false, you can't go from the last image to the first, and vice versa
+            effect: 'slide-hori', // or 'slide-vert', 'resize', 'fade', 'none' or false
+            enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
+            cycle: true // If set to false, you can't go from the last image to the first, and vice versa
+        });
+
     });
 
 };
