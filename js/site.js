@@ -250,9 +250,12 @@ var initMainGalleria = function() {
 
     $.getJSON(flickrApiUrl, function(data) {
         var imgThumbs = new Array();
+        var imgLinks = new Array();
         $.each(data.photoset.photo, function(i, photo) {
             var imgThumb = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t_d.jpg";
             imgThumbs[i] = imgThumb;
+            var imgLink = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z_d.jpg";
+            imgLinks[i] = imgLink;
         });
 
         $.preload(imgThumbs, {
@@ -301,7 +304,11 @@ var initMainGalleria = function() {
                     enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
                     cycle: true  // If set to false, you can't go from the last image to the first, and vice versa
                 });
+
             }
         });
+
+        $.preload(imgLinks);
+
     });
 };
