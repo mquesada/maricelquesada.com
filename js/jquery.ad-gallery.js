@@ -131,6 +131,7 @@
   function AdGallery(wrapper, settings) {
     this.init(wrapper, settings);
   };
+
   AdGallery.prototype = {
     // Elements
     wrapper: false,

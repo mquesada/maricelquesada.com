@@ -147,3 +147,7 @@ footer #shuffle a {
     color:#0B75AF;
     margin: 5px auto;
 }
+
+#main-gallery #temp-gallery {
+    display: none;
+}

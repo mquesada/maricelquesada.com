@@ -139,85 +139,87 @@ var initPictures = function() {
     processImageSize();
     rotatePictures();
 
-    $(".polaroid").mouseover(function(e) {
-        if (!dragging) {
-            // Bring polaroid to the foreground
-            currentZIndex = $(this).css("z-index");
-            var cssObj = {
-                'z-index' : draggingZIndex + 1,
-                'transform' : 'rotate(0deg)',     // added in case CSS3 is standard
-                '-moz-transform' : 'rotate(0deg)',  // firefox only
-                '-webkit-transform' : 'rotate(0deg)', // safari only
-                'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
-                '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
-                '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
-                'padding-left' : '-5px',
-                'padding-top' : '-5px'
-            };
-            $(this).css(cssObj);
-        }
-    });
-
-    $(".polaroid").mouseout(function(e) {
-        if (!dragging) {
-            // Bring polaroid to the foreground
-            var rotationDegrees = $(this).attr("rotationDegrees");
-            var cssObj = {
-                'box-shadow' : '', // added in case CSS3 is standard
-                '-webkit-box-shadow' : '', // safari only
-                '-moz-box-shadow' : '', // firefox only
-                'z-index': currentZIndex,
-                'transform' : 'rotate(' + rotationDegrees + 'deg)',     // added in case CSS3 is standard
-                '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)',  // firefox only
-                '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)' // safari only
-            };
-            $(this).css(cssObj);
-        }
-    });
-
-
-    // Make the polaroid draggable & display a shadow when dragging
-    $(".polaroid").draggable({
-        containment: 'parent',
-        cursor: 'crosshair',
-
-        start: function(event, ui) {
-            dragging = true;
-            draggingZIndex++;
-            currentZIndex = draggingZIndex;
-            var cssObj = {
-                'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
-                '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
-                '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
-                'padding-left' : '-5px',
-                'padding-top' : '-5px',
-                'z-index' : draggingZIndex
-            };
-            $(this).css(cssObj);
-        },
-
-        stop: function(event, ui) {
-            var tempVal = Math.round(Math.random());
-            if (tempVal == 1) {
-                var rotationDegrees = randomXToY(330, 360); // rotate left
-            } else {
-                var rotationDegrees = randomXToY(0, 30); // rotate right
+    $(".polaroid").each(function() {
+        $(this).mouseover(function(e) {
+            if (!dragging) {
+                // Bring polaroid to the foreground
+                currentZIndex = $(this).css("z-index");
+                var cssObj = {
+                    'z-index' : draggingZIndex + 1,
+                    'transform' : 'rotate(0deg)',     // added in case CSS3 is standard
+                    '-moz-transform' : 'rotate(0deg)',  // firefox only
+                    '-webkit-transform' : 'rotate(0deg)', // safari only
+                    'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
+                    '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
+                    '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
+                    'padding-left' : '-5px',
+                    'padding-top' : '-5px'
+                };
+                $(this).css(cssObj);
             }
-            $(this).attr("rotationDegrees", rotationDegrees);
-            var cssObj = {
-                'box-shadow' : '', // added in case CSS3 is standard
-                '-webkit-box-shadow' : '', // safari only
-                '-moz-box-shadow' : '', // firefox only
-                'transform' : 'rotate(' + rotationDegrees + 'deg)', // added in case CSS3 is standard
-                '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)', // safari only
-                '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)', // firefox only
-                'margin-left' : '0px',
-                'margin-top' : '0px',
-                'z-index': draggingZIndex
-            };
-            $(this).css(cssObj);
-            dragging = false;
-        }
+        });
+
+        $(this).mouseout(function(e) {
+            if (!dragging) {
+                // Bring polaroid to the foreground
+                var rotationDegrees = $(this).attr("rotationDegrees");
+                var cssObj = {
+                    'box-shadow' : '', // added in case CSS3 is standard
+                    '-webkit-box-shadow' : '', // safari only
+                    '-moz-box-shadow' : '', // firefox only
+                    'z-index': currentZIndex,
+                    'transform' : 'rotate(' + rotationDegrees + 'deg)',     // added in case CSS3 is standard
+                    '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)',  // firefox only
+                    '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)' // safari only
+                };
+                $(this).css(cssObj);
+            }
+        });
+
+        // Make the polaroid draggable & display a shadow when dragging
+        $(this).draggable({
+            containment: 'parent',
+            cursor: 'crosshair',
+
+            start: function(event, ui) {
+                dragging = true;
+                draggingZIndex++;
+                currentZIndex = draggingZIndex;
+                var cssObj = {
+                    'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
+                    '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
+                    '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
+                    'padding-left' : '-5px',
+                    'padding-top' : '-5px',
+                    'z-index' : draggingZIndex
+                };
+                $(this).css(cssObj);
+            },
+
+            stop: function(event, ui) {
+                var tempVal = Math.round(Math.random());
+                if (tempVal == 1) {
+                    var rotationDegrees = randomXToY(330, 360); // rotate left
+                } else {
+                    var rotationDegrees = randomXToY(0, 30); // rotate right
+                }
+                $(this).attr("rotationDegrees", rotationDegrees);
+                var cssObj = {
+                    'box-shadow' : '', // added in case CSS3 is standard
+                    '-webkit-box-shadow' : '', // safari only
+                    '-moz-box-shadow' : '', // firefox only
+                    'transform' : 'rotate(' + rotationDegrees + 'deg)', // added in case CSS3 is standard
+                    '-webkit-transform' : 'rotate(' + rotationDegrees + 'deg)', // safari only
+                    '-moz-transform' : 'rotate(' + rotationDegrees + 'deg)', // firefox only
+                    'margin-left' : '0px',
+                    'margin-top' : '0px',
+                    'z-index': draggingZIndex
+                };
+                $(this).css(cssObj);
+                dragging = false;
+            }
+        });
+
     });
 };
 
@@ -233,7 +235,7 @@ var shuffle = function() {
 
 var getURLParameter = function(name) {
     return decodeURI(
-        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [,null])[1]
     );
 };
 
@@ -241,57 +243,65 @@ var apiKey = "cb6ebb8677771edd1fc882540576c44c";
 var initMainGalleria = function() {
     var setName = getURLParameter("n");
     $("#set-name").html(setName);
-    
+
     var setId = getURLParameter("id");
 
     var flickrApiUrl = "http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + setId + "&api_key=" + apiKey + "&jsoncallback=?";
 
     $.getJSON(flickrApiUrl, function(data) {
+        var imgThumbs = new Array();
         $.each(data.photoset.photo, function(i, photo) {
             var imgThumb = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t_d.jpg";
-            var imgLink = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z_d.jpg";
-            var li = $("<li/>");
-            var aHref = $("<a href='" + imgLink + "'></a>");
-            var img = $("<img/>").attr("src", imgThumb).attr("title", photo.title);
-            img.appendTo(aHref);
-            aHref.appendTo(li);
-            var list = $(".ad-thumb-list");
-
-            li.appendTo(list);
+            imgThumbs[i] = imgThumb;
         });
 
-        // Init the gallery
-        var galleries = $('.ad-gallery').adGallery({
-            loader_image: 'images/loader.gif',
-            width: 1000, // Width of the image, set to false and it will read the CSS width
-            height: 550, // Height of the image, set to false and it will read the CSS height
-            thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
-            // Note that this effect combined with other effects might be resource intensive
-            // and make animations lag
-            start_at_index: 0, // Which image should be displayed at first? 0 is the first image
-            // to be placed somewhere else than on top of the image
-            slideshow: {
-                enable: true,
-                autostart: false,
-                speed: 3000,
-                start_label: 'Start',
-                stop_label: 'Stop',
-                stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
-                countdown_prefix: '(', // Wrap around the countdown
-                countdown_sufix: ')',
-                onStart: function() {
-                    // Do something wild when the slideshow starts
-                },
-                onStop: function() {
-                    // Do something wild when the slideshow stops
-                }
-            },
-            effect: 'slide-hori', // or 'slide-vert', 'resize', 'fade', 'none' or false
-            enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
-            cycle: true // If set to false, you can't go from the last image to the first, and vice versa
-        });
+        $.preload(imgThumbs, {
+            loaded_all: function(loaded, total) {
 
+               $.each(data.photoset.photo, function(i, photo) {
+                    var imgThumb = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t_d.jpg";
+                    var imgLink = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z_d.jpg";
+                    var li = $("<li/>");
+                    var aHref = $("<a href='" + imgLink + "'></a>");
+                    var img = $("<img/>").attr("src", imgThumb).attr("title", photo.title);
+                    img.appendTo(aHref);
+                    aHref.appendTo(li);
+                    li.appendTo($(".ad-thumb-list"));
+                });
+
+                $(".ad-loader").hide();
+
+                // Init the gallery
+                var galleries = $('.ad-gallery').adGallery({
+                    loader_image: 'images/loader.gif',
+                    width: 1000, // Width of the image, set to false and it will read the CSS width
+                    height: 550, // Height of the image, set to false and it will read the CSS height
+                    thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
+                    // Note that this effect combined with other effects might be resource intensive
+                    // and make animations lag
+                    start_at_index: 0, // Which image should be displayed at first? 0 is the first image
+                    // to be placed somewhere else than on top of the image
+                    slideshow: {
+                        enable: true,
+                        autostart: false,
+                        speed: 2000,
+                        start_label: 'Start',
+                        stop_label: 'Stop',
+                        stop_on_scroll: true, // Should the slideshow stop if the user scrolls the thumb list?
+                        countdown_prefix: '(', // Wrap around the countdown
+                        countdown_sufix: ')',
+                        onStart: function() {
+                            // Do something wild when the slideshow starts
+                        },
+                        onStop: function() {
+                            // Do something wild when the slideshow stops
+                        }
+                    },
+                    effect: 'slide-hori', // or 'slide-vert', 'resize', 'fade', 'none' or false
+                    enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
+                    cycle: true  // If set to false, you can't go from the last image to the first, and vice versa
+                });
+            }
+        });
     });
-
 };
-
