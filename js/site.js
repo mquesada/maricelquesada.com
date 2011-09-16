@@ -246,27 +246,22 @@ var initMainGalleria = function() {
 
     var setId = getURLParameter("id");
 
-    var flickrApiUrl = "http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + setId + "&api_key=" + apiKey + "&jsoncallback=?";
-
+    var flickrApiUrl = "http://api.flickr.com/services/rest/?format=json&method=flickr.photosets.getPhotos&photoset_id=" + setId + "&api_key=" + apiKey + "&jsoncallback=?&extras=url_t,url_m";
     $.getJSON(flickrApiUrl, function(data) {
         var imgThumbs = new Array();
         var imgLinks = new Array();
         $.each(data.photoset.photo, function(i, photo) {
-            var imgThumb = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t_d.jpg";
-            imgThumbs[i] = imgThumb;
-            var imgLink = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z_d.jpg";
-            imgLinks[i] = imgLink;
+            imgThumbs[i] = photo.url_t;
+            imgLinks[i] = photo.url_m;
         });
 
         $.preload(imgThumbs, {
             loaded_all: function(loaded, total) {
 
-               $.each(data.photoset.photo, function(i, photo) {
-                    var imgThumb = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_t_d.jpg";
-                    var imgLink = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_z_d.jpg";
+                $.each(data.photoset.photo, function(i, photo) {
                     var li = $("<li/>");
-                    var aHref = $("<a href='" + imgLink + "'></a>");
-                    var img = $("<img/>").attr("src", imgThumb).attr("title", photo.title);
+                    var aHref = $("<a href='" + photo.url_m + "'></a>");
+                    var img = $("<img/>").attr("src", photo.url_t).attr("title", photo.title);
                     img.appendTo(aHref);
                     aHref.appendTo(li);
                     li.appendTo($(".ad-thumb-list"));
