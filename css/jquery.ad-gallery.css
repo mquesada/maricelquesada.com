@@ -78,7 +78,10 @@
     top: 0;
     left: 0;
     z-index: 9;
-    border: 2px solid #000;
+    border: 2px solid #404040;
+    -moz-box-shadow: 2px 2px 5px #C2C2C2;
+    -webkit-box-shadow: 2px 2px 5px #C2C2C2;
+    box-shadow: 2px 2px 5px #C2C2C2;
 }
 
 .ad-gallery .ad-image-wrapper .ad-image a img {
