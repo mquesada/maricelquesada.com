@@ -79,17 +79,18 @@ var initNavigation = function() {
  * but it is still a big too big, so I resize it by reducing the image and the div
  * by 25%.
  */
-var processImageSize = function() {
-    $("img", $("#gallery")).each(function() {
+var processImageSize = function(resizeImage, container) {
+    $("img", $("#" + container)).each(function() {
         $(this).load(function() {
             var width = $(this).width();
             var height = $(this).height();
 
-            width = width - (width * 0.25);
-            height = height - (height * 0.25);
-
-            $(this).width(width);
-            $(this).height(height);
+            if (resizeImage) {
+                width = width - (width * 0.25);
+                height = height - (height * 0.25);
+                $(this).width(width);
+                $(this).height(height);
+            }
 
             var cssObj = {
                 'width': width + "px",
@@ -135,8 +136,8 @@ var rotatePictures = function() {
  * Inits each poloroid image, rotating, positioning them and setting different events
  * like mouseover, mouseout and dragging.
  */
-var initPictures = function() {
-    processImageSize();
+var initPictures = function(resizeImage, container) {
+    processImageSize(resizeImage, container);
     rotatePictures();
 
     $(".polaroid").each(function() {
@@ -272,8 +273,8 @@ var initMainGalleria = function() {
                 // Init the gallery
                 var galleries = $('.ad-gallery').adGallery({
                     loader_image: 'images/loader.gif',
-                    width: 1000, // Width of the image, set to false and it will read the CSS width
-                    height: 550, // Height of the image, set to false and it will read the CSS height
+                    width: 750, // Width of the image, set to false and it will read the CSS width
+                    height: 450, // Height of the image, set to false and it will read the CSS height
                     thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
                     // Note that this effect combined with other effects might be resource intensive
                     // and make animations lag
@@ -306,4 +307,29 @@ var initMainGalleria = function() {
         $.preload(imgLinks);
 
     });
+};
+
+var showAlbumSelected = function() {
+    var setId = getURLParameter("id");
+    var photo = $("#pId" + setId);
+    if (photo && photo.parent()) {
+        // Bring polaroid to the foreground
+        currentZIndex = photo.css("z-index");
+        var cssObj = {
+            'z-index' : draggingZIndex + 1,
+            'transform' : 'rotate(0deg)',     // added in case CSS3 is standard
+            '-moz-transform' : 'rotate(0deg)',  // firefox only
+            '-webkit-transform' : 'rotate(0deg)', // safari only
+            'box-shadow' : '#888 3px 5px 5px', // added in case CSS3 is standard
+            '-webkit-box-shadow' : '#888 3px 5px 5px', // safari only
+            '-moz-box-shadow' : '#888 3px 5px 5px', // firefox only
+            'padding-left' : '-5px',
+            'padding-top' : '-5px',
+            'top': photo.parent().offset().top - 300,
+            'left': photo.parent().offset().left
+        };
+        photo.css(cssObj);
+        photo.unbind('mouseover');
+        photo.unbind('mouseout');
+    }
 };
