@@ -273,8 +273,8 @@ var initMainGalleria = function() {
                 // Init the gallery
                 var galleries = $('.ad-gallery').adGallery({
                     loader_image: 'images/loader.gif',
-                    width: 750, // Width of the image, set to false and it will read the CSS width
-                    height: 450, // Height of the image, set to false and it will read the CSS height
+                    width: false, // Width of the image, set to false and it will read the CSS width
+                    height: false, // Height of the image, set to false and it will read the CSS height
                     thumb_opacity: 0.7, // Opacity that the thumbs fades to/from, (1 removes fade effect)
                     // Note that this effect combined with other effects might be resource intensive
                     // and make animations lag
